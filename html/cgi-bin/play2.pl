@@ -15,7 +15,7 @@ use Time::localtime;
 
 my $cgi = CGI->new() ;
 
-first_time() ;
+# first_time() ;
 
 my $jsonpth = '/var/www/html/cgi-bin/schedule.json' ;
 my $jsonpthnew = '/tmp/schedule.json.new' ;
@@ -384,12 +384,12 @@ sub nz
 	}
 }
 
-sub first_time
-{
-	my $status = read_file("../firstTimeConfiguration") ;
-	if($status eq 'FIRST_TIME')
-	{
-		print $cgi->redirect('firstTimeConfiguration.pl');
-	}
-	exit ;
-}
+# sub first_time
+# {
+# 	my $status = read_file("../firstTimeConfiguration") ;
+# 	if($status eq 'FIRST_TIME')
+# 	{
+# 		print $cgi->redirect('firstTimeConfiguration.pl');
+# 	}
+# 	exit ;
+# }
