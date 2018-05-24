@@ -12,13 +12,10 @@ use JSON;
 use File::Slurp;
 use File::stat;
 use Time::localtime;
-# use Data::Dumper;
-# my $dis = qx(cat /var/www/html/cgi-bin/dis_number.txt) ;
-# $dis = chomp($dis) ;
-# if ($dis eq '')
-# {
-	# $dis = 1 ;
-# }
+
+my $cgi = CGI->new() ;
+
+first_time() ;
 
 my $jsonpth = '/var/www/html/cgi-bin/schedule.json' ;
 my $jsonpthnew = '/tmp/schedule.json.new' ;
@@ -34,8 +31,6 @@ if (!-e $jsonpth)
 }
 
 my $decoded_json = decode_json(read_file($jsonpth));
-
-my $cgi = CGI->new() ;
 
 my $noanuncio = $cgi->param('noanuncio') ;
 
@@ -387,4 +382,14 @@ sub nz
 	{
 		return $x ;
 	}
+}
+
+sub first_time
+{
+	my $status = read_file("../firstTimeConfiguration") ;
+	if($status eq 'FIRST_TIME')
+	{
+		print $cgi->redirect('firstTimeConfiguration.pl');
+	}
+	exit ;
 }

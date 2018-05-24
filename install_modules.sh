@@ -27,4 +27,4 @@ ln -s /home/pi/rpi-digital-signage/html/cgi-bin/play2.pl /var/www/html/cgi-bin/p
 ln -s /home/pi/rpi-digital-signage/html/cgi-bin/playVideo.pl /var/www/html/cgi-bin/playVideo.pl
 ln -s /home/pi/rpi-digital-signage/html/cgi-bin/playVideo.sh /var/www/html/cgi-bin/playVideo.sh
 ln -s /home/pi/rpi-digital-signage/html/cgi-bin/videoProcess.pl /var/www/html/cgi-bin/videoProcess.pl
-
+ln -s /home/pi/rpi-digital-signage/html/firstTimeConfiguration /var/www/html/
