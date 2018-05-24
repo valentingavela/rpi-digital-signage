@@ -6,13 +6,19 @@ use utf8;
 use CGI;
 my $cgi = CGI->new() ;
 
-print $cgi->header() ;
-
 my $filename = '../firstTimeConfiguration';
 my $status = read_file($filename) ;
 
-if($status eq 'FIRST_TIME')
+if($status eq 'PRODUCTION')
 {
+  print $cgi->redirect('/cgi-bin/play2.pl');
+  exit ;
+}
+
+print $cgi->header() ;
+elsif($status eq 'FIRST_TIME')
+{
+
   print "1. Conectate a la red XXXX con cualquier dispositivo." ;
   print "<br>" ;
   print "2. Aceptá la conexión aunque el teléfono advierta que no tiene internet." ;
@@ -33,6 +39,9 @@ elsif($status eq 'SYNCHRONIZED')
 {
   print "Espere por favor. Este proceso puede tardar unos minutos." ;
 }
+
+exit ;
+
 
 ########
 sub read_file
