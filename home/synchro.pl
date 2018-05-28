@@ -56,6 +56,7 @@ print("ACTUALIZANDO SCHEDULE.JSON \n") ;
 	}
 	system("cp $pthlocalschedule $pthplayschedule") ;
 	system("perl /home/pi/rpi-digital-signage/home/removeFiles.pl") ;
+	setFirstTimeConfigurationStatus() ;
 }
 else
 {
