@@ -216,7 +216,7 @@ sub setFirstTimeConfigurationStatus
 
   if($status eq 'SYNCHRO')
   {
-    system("echo -n > /var/lib/misc/dnsmasq.leases") ;
+    system("echo -n >  /var/lib/misc/dnsmasq.leases") ;
     system("echo -n PRODUCTION > $filename") ;
   }
 }
