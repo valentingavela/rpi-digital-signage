@@ -209,3 +209,14 @@ sub rsync
 	}
 }
 #----------------------------------
+sub setFirstTimeConfigurationStatus
+{
+  my $filename = '/var/www/html/firstTimeConfiguration';
+  my $status = read_file($filename) ;
+
+  if($status eq 'SYNCHRO')
+  {
+    system("echo -n > /var/lib/misc/dnsmasq.leases") ;
+    system("echo -n PRODUCTION > $filename") ;
+  }
+}

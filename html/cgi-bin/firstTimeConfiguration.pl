@@ -46,11 +46,12 @@ else
   elsif($status eq 'SYNCHRO')
   {
     print "5. ¡Listo! Siguit comenzará su proceso de instalación." ;
-  }
-  elsif($status eq 'SYNCHRONIZED')
-  {
+    print "<br>" ;
     print "Espere por favor. Este proceso puede tardar unos minutos." ;
   }
+  # elsif($status eq 'SYNCHRONIZED')
+  # {
+  # }
 
 }
 exit ;
