@@ -16,6 +16,11 @@ if($res ne "ERROR")
   file_write("/var/www/html/cgi-bin/dis_number.txt", $res) ;
   system("chown pi:www-data /var/www/html/cgi-bin/dis_number.txt") ;
 }
+else
+{
+  file_write("/var/www/html/cgi-bin/dis_number.txt", "NOT_AVAILABLE") ;
+}
+
 
 sub file_write
 {
