@@ -4,9 +4,19 @@ use warnings ;
 
 my $mac = qx(cat /sys/class/net/wlan0/address);
 $mac =~ tr/\r\n//d;
-my $uptime = substr(qx(uptime), 0, 9);
 
-my $cmd = qq { curl --data "mac=$mac&uptime=$uptime" https://benteveo.com/cgi-bin/inmoping.pl } ;
+my $mac2 = qx(cat /sys/class/net/eth0/address);
+$mac2 =~ tr/\r\n//d;
+
+my $ip = qx(hostname -I) ;
+# $ip =~ tr/\r\n//d ;
+
+my $uptime = substr(qx(uptime), 1, 8);
+
+my $cmd = qq { curl --data "mac=$mac&mac2=$mac2&uptime=$uptime&ip=$ip" https://benteveo.com/cgi-bin/inmoping.pl } ;
+
+print "$cmd \n" ;
+
 my $res = qx($cmd) ;
 
 # qx(cat /var/www/html/cgi-bin/dis_number.txt) ;
