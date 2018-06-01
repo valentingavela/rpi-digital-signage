@@ -11,7 +11,7 @@ my $status = read_file($filename) ;
 
 if($status eq 'PRODUCTION')
 {
-  print $cgi->redirect('/cgi-bin/play2.pl');
+  print $cgi->redirect('/cgi-bin/play3.pl');
   exit ;
 }
 else
