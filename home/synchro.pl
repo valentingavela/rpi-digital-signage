@@ -29,10 +29,6 @@ if (rsync($pthremoteschedule, $pthlocalschedule))
 {
 print("ACTUALIZANDO SCHEDULE.JSON \n") ;
 
-	#Sincronizar IMAGENES LEYENDO EL JSON.
-	system("chown www-data:www-data $pthlocalschedule") ;
-	system("chown www-data:www-data $pthplayschedule") ;
-
 	if (-e $pthlocalschedule)
 	{
 		my $decoded_json = decode_json(read_file($pthlocalschedule)) ;
@@ -56,6 +52,14 @@ print("ACTUALIZANDO SCHEDULE.JSON \n") ;
 	}
 	system("cp $pthlocalschedule $pthplayschedule") ;
 	system("perl /home/pi/rpi-digital-signage/home/removeFiles.pl") ;
+
+	#Sincronizar IMAGENES LEYENDO EL JSON.
+	system("chown www-data:www-data $pthlocalschedule") ;
+	system("chown www-data:www-data $pthplayschedule") ;
+	system("chmod 777 $pthplayschedule") ;
+	system("chmod 777 $pthplayschedule") ;
+
+	#FIRST TIME
 	setFirstTimeConfigurationStatus() ;
 }
 else
