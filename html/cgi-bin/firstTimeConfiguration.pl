@@ -20,7 +20,7 @@ else
   #Checkeo las leases en el servidor dhcdp para determinar si estoy en
   #status WIFI_CONFIGURATION
   print $cgi->header() ;
-  my $template = HTML::Template->new(filename => "/var/www/html/templates/inmobiliarias/ds/messages/messages-T.html") ; #$pth path del template
+  my $template = HTML::Template->new(filename => "/var/www/html/templates/messages/messages-T.html") ; #$pth path del template
   my $message ;
   # print qq {
   #   <head>
@@ -32,27 +32,28 @@ else
   if($status eq 'FIRST_TIME')
   {
     $message = "1. Conectate a la red siguit-ap-conf con cualquier dispositivo." ;
-    $message += "<br>" ;
-    $message += "2. Aceptá la conexión aunque el teléfono advierta que no tiene internet." ;
+    $message .= "<br>" ;
+    $message .= "2. Aceptá la conexión aunque el teléfono advierta que no tiene internet." ;
 
     checkLeasesAndSetStatus() ;
   }
   elsif($status eq 'WIFI_CONFIGURATION')
   {
     $message = "3. Abrí el navegador y escribí este número en el campo de dirección:" ;
-    $message += "<br>" ;
-    $message += "192.168.4.1" ;
-    $message += "<br>" ;
-    $message += "4. Elegí tu red wifi dentro de la lista y conectate."
+    $message .= "<br>" ;
+    $message .= "192.168.4.1" ;
+    $message .= "<br>" ;
+    $message .= "4. Elegí tu red wifi dentro de la lista y conectate."
   }
   elsif($status eq 'SYNCHRO')
   {
     $message = "5. ¡Listo! Siguit comenzará su proceso de instalación." ;
-    $message += "<br>" ;
-    $message += "Espere por favor. Este proceso puede tardar unos minutos." ;
+    $message .= "<br>" ;
+    $message .= "Espere por favor. Este proceso puede tardar unos minutos." ;
   }
 
-  $template->param(variable_html => $message );
+  $template->param(message => $message );
+  print $template->output() ;
   # elsif($status eq 'SYNCHRONIZED')
   # {
   # }
