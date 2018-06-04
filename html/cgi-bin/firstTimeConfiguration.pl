@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use utf8;
+use HTML::Template;
 
 use CGI;
 my $cgi = CGI->new() ;
@@ -16,48 +17,51 @@ if($status eq 'PRODUCTION')
 }
 else
 {
-
   #Checkeo las leases en el servidor dhcdp para determinar si estoy en
   #status WIFI_CONFIGURATION
-
-
   print $cgi->header() ;
-  print qq {
-    <head>
-      <meta http-equiv="refresh" content="5">
-    </head>
-  } ;
+  my $template = HTML::Template->new(filename => "/var/www/html/templates/inmobiliarias/ds/messages/messages-T.html") ; #$pth path del template
+  my $message ;
+  # print qq {
+  #   <head>
+  #     <meta http-equiv="refresh" content="5">
+  #   </head>
+  # }
+  # ;
 
   if($status eq 'FIRST_TIME')
   {
-    print "1. Conectate a la red siguit-ap-conf con cualquier dispositivo." ;
-    print "<br>" ;
-    print "2. Aceptá la conexión aunque el teléfono advierta que no tiene internet." ;
+    $message = "1. Conectate a la red siguit-ap-conf con cualquier dispositivo." ;
+    $message += "<br>" ;
+    $message += "2. Aceptá la conexión aunque el teléfono advierta que no tiene internet." ;
+
     checkLeasesAndSetStatus() ;
   }
   elsif($status eq 'WIFI_CONFIGURATION')
   {
-    print "3. Abrí el navegador y escribí este número en el campo de dirección:" ;
-    print "<br>" ;
-    print "192.168.4.1" ;
-    print "<br>" ;
-    print "4. Elegí tu red wifi dentro de la lista y conectate."
+    $message = "3. Abrí el navegador y escribí este número en el campo de dirección:" ;
+    $message += "<br>" ;
+    $message += "192.168.4.1" ;
+    $message += "<br>" ;
+    $message += "4. Elegí tu red wifi dentro de la lista y conectate."
   }
   elsif($status eq 'SYNCHRO')
   {
-    print "5. ¡Listo! Siguit comenzará su proceso de instalación." ;
-    print "<br>" ;
-    print "Espere por favor. Este proceso puede tardar unos minutos." ;
+    $message = "5. ¡Listo! Siguit comenzará su proceso de instalación." ;
+    $message += "<br>" ;
+    $message += "Espere por favor. Este proceso puede tardar unos minutos." ;
   }
+
+  $template->param(variable_html => $message );
   # elsif($status eq 'SYNCHRONIZED')
   # {
   # }
 
 }
 exit ;
-
-
 ########
+
+
 sub read_file
 {
   my $filename = shift ;

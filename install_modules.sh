@@ -20,7 +20,7 @@ ln -s /home/pi/rpi-digital-signage/home/synchro.pl /home/pi/synchro.pl
 ln -s /home/pi/rpi-digital-signage/home/syncSystem.pl /home/pi/syncSystem.pl
 
 ln -s /home/pi/rpi-digital-signage/html/siguitds/ /var/www/html/siguitds
-
+ln -s /home/pi/rpi-digital-signage/html/css/styles-messages.css /var/www/html/css/styles-messages.css
 ln -s /home/pi/rpi-digital-signage/html/templates/ /var/www/html/templates
 
 ln -s /home/pi/rpi-digital-signage/html/cgi-bin/dis_number.txt /var/www/html/cgi-bin/dis_number.txt
