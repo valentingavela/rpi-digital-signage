@@ -7,8 +7,7 @@ use HTML::Template;
 use CGI;
 my $cgi = CGI->new() ;
 
-my $filename = '../firstTimeConfiguration';
-my $status = read_file($filename) ;
+my $status = read_file('../firstTimeConfiguration') ;
 
 if($status eq 'PRODUCTION')
 {
@@ -28,6 +27,11 @@ else
   #   </head>
   # }
   # ;
+  my $process_status = read_file( '/tmp/process_status' ) ;
+  if($process_status eq 'CONNECTED')
+  {
+	system("echo -n SYNCHRO > ../firstTimeConfiguration") ;
+  }
 
   if($status eq 'FIRST_TIME')
   {
@@ -88,6 +92,6 @@ sub checkLeasesAndSetStatus
   if ($leases > '0')
   {
     system("echo -n WIFI_CONFIGURATION > $filename") ;
-    print "pepe" ;
+    print "WIFI_CONFIGURATION" ;
   }
 }
