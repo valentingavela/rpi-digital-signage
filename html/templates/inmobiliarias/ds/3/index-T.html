@@ -68,26 +68,38 @@
 				</div>
 			</TMPL_IF>
 
-			</div
-			><div class="data">
+			</div>
+			<div class="data">
 				<ul class="tags">
-					<li class="tag"><TMPL_VAR NAME=eti></li
-					><li class="operation"><TMPL_VAR NAME=tip_ofe></li
-					><li class="status"><TMPL_VAR NAME=est_emp></li>
 
-					<TMPL_IF etg>
-					<li class="deliver"><TMPL_VAR NAME=etg></li>
+					<TMPL_IF eti>
+							<li class="tag"><TMPL_VAR NAME=eti></li>
 					</TMPL_IF>
 
+					<TMPL_IF tip_ofe>
+							<li class="operation"><TMPL_VAR NAME=tip_ofe></li>
+					</TMPL_IF>
+
+					<TMPL_IF est_emp>
+							<li class="status"><TMPL_VAR NAME=est_emp></li>
+					</TMPL_IF>
+
+					<TMPL_IF etg>
+							<li class="deliver"><TMPL_VAR NAME=etg></li>
+					</TMPL_IF>
 				</ul>
+
 				<div class="columns">
+
+				<TMPL_IF txt>
 					<div class="col-6">
 						<h1><TMPL_VAR NAME=des></h1>
 							<p class="description"><TMPL_VAR NAME=txt></p>
-					</div
-					><div class="col-3 details">
-						<dl>
+					</div>
+				</TMPL_IF>
 
+					<div class="col-3 details">
+					<dl>
 							<TMPL_IF nro_sup_tot>
 							<dt class="hide">Sup. total</dt
 							><dd class="sup-total">
