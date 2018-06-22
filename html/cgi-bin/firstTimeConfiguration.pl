@@ -79,6 +79,7 @@ else
   }
 
   $template->param(message => $message );
+  $template->param(loading => $loading );
   print $template->output() ;
 
 }
