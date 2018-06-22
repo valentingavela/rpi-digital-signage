@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Siguit</title>
+	<link rel="icon" href="img/favicon.png?v=0.1" sizes="32x32" type="image/png">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:700|Lato:300,400">
+	<link rel="stylesheet" href="css/styles.css?v=0.1">
+	<script defer src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script defer src="js/libraries/svg4everybody.min.js"></script>
+	<script defer src="js/constant.js?v0.1"></script>
+	<style>
+		.dark {
+			padding: 0;
+		}
+		.dark main {
+			background: url("img/mensaje-fondo.jpg") 50% 50% / cover no-repeat #100C35;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			min-height: 100vh;
+			padding: 4.8rem 7.2rem;
+			text-align: center;
+		}
+		.logotype {
+			left: 50%;
+			right: auto;
+			transform: translateX(-50%);
+		}
+		.content {
+			max-width: none;
+			padding: 0;
+		}
+		.loading {
+			border-color: rgba(255, 255, 255, 0.15);
+		}
+		.loading.top {
+			top: 4.8rem;
+			transform: translateX(-50%);
+		}
+		h2 {
+			font-size: 8.4rem;
+			letter-spacing: 0.5rem;
+			line-height: 1.25;
+		}
+		h2 + p {
+			margin-top: 3.6rem;
+		}
+		p {
+			color: #00FFE4;
+			font: 300 5.4rem/6rem Lato;
+			text-transform: uppercase;
+		}
+		p span {
+			background: #00FFE4;
+			color: #100C35;
+			display: inline-block;
+			padding: 0 0.6rem;
+		}
+	</style>
+</head>
+<body class="dark">
+	<header>
+		<h1 class="logotype"><img src="img/siguit.svg" alt="Siguit"></h1>
+	</header>
+	<main>
+		<div class="content">
+			<h2>Título del mensaje para siguit</h2>
+			<p>Lorem ipsum dolor sit amet <span>consectetur adipiscing elit</span> sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+		</div>
+		<div class="loading top"></div>
+	</main>
+</body>
+</html>

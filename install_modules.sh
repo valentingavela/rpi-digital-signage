@@ -30,3 +30,5 @@ ln -s /home/pi/rpi-digital-signage/html/cgi-bin/playVideo.pl /var/www/html/cgi-b
 ln -s /home/pi/rpi-digital-signage/html/cgi-bin/playVideo.sh /var/www/html/cgi-bin/playVideo.sh
 ln -s /home/pi/rpi-digital-signage/html/cgi-bin/videoProcess.pl /var/www/html/cgi-bin/videoProcess.pl
 ln -s /home/pi/rpi-digital-signage/html/firstTimeConfiguration /var/www/html/
+
+chmod o+w /etc/wpa_supplicant/wpa_supplicant.conf

@@ -50,14 +50,8 @@ $canrep = $canrep + 1 ;
 if ($vector eq '')
 	{
 	$vector = 0 ;
-}
+	}
 $vector = $vector + 1 ;
-
-if ($vector_ivl eq '')
-	{
-	$vector_ivl = 0 ;
-}
-$vector_ivl = $vector_ivl + 1 ;
 
 my $sch_len  = scalar @{$decoded_json->{'schedule'}};
 if($vector >= $sch_len)
@@ -70,12 +64,9 @@ if (ref($decoded_json->{'ivl'}{media}) eq 'ARRAY')
 {
 	@ivl = @{$decoded_json->{ivl}{media}} ;
 }
+unshift @ivl, "$decoded_json->{logo}{media}";
 
-my $ivl_len  = scalar @ivl;
-if($vector_ivl >= $ivl_len)
-{
-	$vector_ivl = 0 ;
-}
+
 #---
 
 my $cook1 = $cgi->cookie(-name=>'canrep',-value=>$canrep,-expires=>'+3M',-path=>'/cgi-bin/') ;
@@ -84,11 +75,26 @@ print "Set-Cookie: $cook1\n" ;
 my $cook2  = $cgi->cookie(-name=>'vector',-value=>$vector,-expires=>'+3M',-path=>'/cgi-bin/') ;
 print "Set-Cookie: $cook2\n" ;
 
-my $cook3  = $cgi->cookie(-name=>'vector_ivl',-value=>$vector_ivl,-expires=>'+3M',-path=>'/cgi-bin/') ;
-print "Set-Cookie: $cook3\n" ;
-
 if ($interval ne '' && ($canrep == $interval and $noanuncio ne 'no'))
 {
+	if ($vector_ivl eq '')
+	{
+		$vector_ivl = 0 ;
+	}
+
+	my $ivl_len  = scalar @ivl;
+	if($vector_ivl >= $ivl_len - 1)
+	{
+		$vector_ivl = 0 ;
+	}
+	else
+	{
+	$vector_ivl = $vector_ivl + 1 ;
+	}
+
+	my $cook3  = $cgi->cookie(-name=>'vector_ivl',-value=>$vector_ivl,-expires=>'+3M',-path=>'/cgi-bin/') ;
+	print "Set-Cookie: $cook3\n" ;
+
 	mostrarinterval($decoded_json, $vector_ivl);
 }
 else
@@ -111,19 +117,21 @@ sub mostrarinterval
 	my $b ;
 
 	my $redir = redir($duration) ;
-	if ($vector_ivl eq '0' and $decoded_json->{logo}{media} ne '')
-	{
-		$media = $decoded_json->{logo}{media} ;
-		$b = intervalStr($media, $duration) ;
-		$tptpth = intervalTpt($media) ;
-	}
-	else
-	{
+	# if ($vector_ivl eq '0' and $decoded_json->{logo}{media} ne '')
+	# {
+	# 	$media = $decoded_json->{logo}{media} ;
+	# 	$b = intervalStr($media, $duration) ;
+	# 	$tptpth = intervalTpt($media) ;
+	# }
+	# else
+	# {
 		my @ivl = @{$decoded_json->{ivl}{media}} ;
+		unshift @ivl, "$decoded_json->{logo}{media}";
+
 		$media = $ivl[$vector_ivl] ;
 		$b = intervalStr($media, $duration) ;
 		$tptpth = intervalTpt($media) ;
-	}
+	# }
 
 	my $template = HTML::Template->new(filename => $tptpth);
 	$template->param(b => $b);
@@ -349,7 +357,9 @@ sub intervalStr
 	}
 	else
 	{
-		$b = qq{ <img src="/siguitds/inmobiliarias/images/$media" alt="Logo"> }  ;
+		# <img class="animation" style="animation-duration: 10s;" src="img/logo.svg" alt="Logo">
+		$b = qq{ <img class="animation" style="animation-duration: 10s;" src="/siguitds/inmobiliarias/images/$media" alt="Logo"> } ;
+		# $b = qq{ <img src="/siguitds/inmobiliarias/images/$media" alt="Logo"> }  ;
 		$b .= redir($duration) ;
 	}
 	return $b ;
