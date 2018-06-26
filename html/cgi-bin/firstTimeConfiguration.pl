@@ -41,9 +41,20 @@ else
 
   if($status eq 'FIRST_TIME')
   {
-    $message = "<p>Conectate a la red <span>siguit-ap-conf</span> con cualquier dispositivo." ;
-    $message .= "<br>" ;
-    $message .= "Aceptá la conexión aunque el teléfono advierta que no tiene internet.</p>" ;
+    $message = "<h2>PARA CONFIGURAR SIGUIT POR RED CABLEADA</h2>" ;
+
+    $message .= "<p>Conectá un cable de ethernet desde un router con conexión a Internet hasta el dispositivo Siguit. Espere unos segundos a que el sistema sincronice automáticamente.</p>" ;
+
+    $message .= "<h2>PARA CONFIGURAR SIGUIT POR WIFI</h2>" ;
+
+    $message .= "<p>Conectate a la red <span>siguit-ap-conf</span> con cualquier dispositivo" ;
+
+    $message .= "Aceptá la conexión aunque el teléfono advierta que no tiene internet</p>" ;
+
+
+    # $message = "<p>Conectate a la red <span>siguit-ap-conf</span> con cualquier dispositivo." ;
+    # $message .= "<br>" ;
+    # $message .= "Aceptá la conexión aunque el teléfono advierta que no tiene internet.</p>" ;
 
     checkLeasesAndSetStatus() ;
   }
@@ -62,7 +73,7 @@ else
   }
   elsif($status eq 'CANT_CONNECT')
   {
-    $message = "<p> El sistema no pudo conectarse. Repita estos pasos" ;
+    $message = "<p> El sistema no pudo conectarse, posiblemente debido a contraseña incorrecta o problemas en la red. Por favor, repita estos pasos correctamente." ;
     $message .= "<br>" ;
     $message .= "Conectate a la red <span>siguit-ap-conf</span> con cualquier dispositivo." ;
     $message .= "<br>" ;
